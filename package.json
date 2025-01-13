@@ -1,0 +1,19 @@
+{
+  "name": "@squadle/projectb",
+  "version": "1.0.1",
+  "description": "Project to include ProjectA",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    ".puppeteerrc.cjs"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@squadle/projecta": "^1.0.0",
+    "puppeteer": "^24.0.0"
+  }
+}
