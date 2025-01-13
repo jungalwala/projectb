@@ -1,5 +1,5 @@
 {
-  "name": "@squadle/projectb",
+  "name": "projectb",
   "version": "1.0.1",
   "description": "Project to include ProjectA",
   "main": "index.js",

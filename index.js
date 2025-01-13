@@ -1,26 +1,33 @@
+// Import the puppeteer module
 const puppeteer = require('puppeteer');
 
 (async () => {
-  try {
-    // Launch Puppeteer
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
+    try {
+        // Launch Puppeteer with the --no-sandbox flag
+        const browser = await puppeteer.launch({
+            args: ['--no-sandbox', '--disable-setuid-sandbox'] // Flags for no-sandbox
+        });
 
-    // Navigate to the URL
-    await page.goto('https://www.google.com', { waitUntil: 'networkidle2' });
+        // Open a new browser page
+        const page = await browser.newPage();
 
-    // Generate a PDF
-    await page.pdf({
-      path: 'google.pdf', // Save as 'google.pdf' in the current directory
-      format: 'A4', // Paper format
-      printBackground: true // Include background graphics
-    });
+        // Navigate to Google's homepage
+        await page.goto('https://www.google.com', {
+            waitUntil: 'networkidle2' // Wait until the page is fully loaded
+        });
 
-    console.log('PDF created: google.pdf');
+        // Generate a PDF of the page
+        await page.pdf({
+            path: 'google.pdf', // Save the PDF with this filename
+            format: 'A4', // Use A4 paper size
+            printBackground: true // Include background graphics
+        });
 
-    // Close the browser
-    await browser.close();
-  } catch (error) {
-    console.error('Error generating PDF:', error);
-  }
+        console.log('PDF successfully generated as "google.pdf"');
+
+        // Close the browser
+        await browser.close();
+    } catch (error) {
+        console.error('Error generating PDF:', error);
+    }
 })();
